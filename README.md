@@ -48,4 +48,10 @@ sudo apt install ffmpeg
 <TODO>
   
 ## Start streaming RTSP feed from webcam to RTMP endpoint of Youtube
+Created two different files which have commands to start the streaming using ffmpeg. fastStream for day time and slowStream for night time. 
+**SlowStreamin**
+The slow streaming is for saving bandwidth during night time when there is little to no action of birds. No point streaming at higher fps
+With youtube if the live streaming is stopped, it would end the stream and it needs manual intervention to restart the stream using website
+Hence, the slow streaming keeps the youtube stream alive as well as saves bandwidth as we are streaming just 1 frame per second.
+
 
