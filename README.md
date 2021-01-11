@@ -48,10 +48,19 @@ sudo apt install ffmpeg
 <TODO>
   
 ## Start streaming RTSP feed from webcam to RTMP endpoint of Youtube
+Just run ./fastStream.sh to start streaming on youtube. The reason behind fastStream and slowStream is explained later
+
+
+# Why slow streaming at night and fast streaming during day time?
 Created two different files which have commands to start the streaming using ffmpeg. fastStream for day time and slowStream for night time. 
-**slowStreaming.sh**
+
 The slow streaming is for saving bandwidth during night time when there is little to no action of birds. No point streaming at higher fps
 With youtube if the live streaming is stopped, it would end the stream and it needs manual intervention to restart the stream using website
 Hence, the slow streaming keeps the youtube stream alive as well as saves bandwidth as we are streaming just 1 frame per second.
 
-
+# Cron setup for automated start of streaming
+Add the following lines in your cron file
+Type ``` crontab -e ```
+and add the following lines to start fast streaming in daytime and slow streaming in night time
+0 6 * * * timeout 11h /home/pi/workspace/youtubeLiveStreaming/fastStream.sh > /dev/null 2>&1
+0 17 * * * timeout 13h /home/pi/workspace/youtubeLiveStreaming/slowStream.sh > /dev/null 2>&1
