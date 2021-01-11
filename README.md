@@ -1,6 +1,6 @@
 
 # What is the end goal?
-Setup Youtube live streaming using a webcam.
+Setup Youtube live streaming using a webcam that supports RTSP and raspberry pi. Setup in a way that it saves bandwidth during non-active hours.
 
 # What all things we need?
 1. A webcam that supports RTSP (without any SD card). This allows to keep the webcam near the video input source needing just one power setup. Such setup is usually outside the house like bird feeder, home security, etc. 
