@@ -6,4 +6,4 @@
 # Using default input fps as output fps
 
 echo "Starting slow live streaming to just keep live streaming alive!!"
-ffmpeg -fflags +igndts -i $RTSP_URL -c:a copy  -filter:v -f flv  $RTMP_URL
+ffmpeg -fflags +igndts -i $RTSP_URL -c:v copy -c:a copy -f flv -f flv  $RTMP_URL
