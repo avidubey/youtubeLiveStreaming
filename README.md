@@ -62,5 +62,7 @@ Hence, the slow streaming keeps the youtube stream alive as well as saves bandwi
 Add the following lines in your cron file
 Type ``` crontab -e ```
 and add the following lines to start fast streaming in daytime and slow streaming in night time
+```
 0 6 * * * timeout 11h /home/pi/workspace/youtubeLiveStreaming/fastStream.sh > /dev/null 2>&1
 0 17 * * * timeout 13h /home/pi/workspace/youtubeLiveStreaming/slowStream.sh > /dev/null 2>&1
+```
