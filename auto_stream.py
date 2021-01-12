@@ -11,7 +11,7 @@ from datetime import datetime, time, timedelta
 # These will be unique to your use cases but would look something like this
 # RTSP_URL = "rtsp://username:password@cameraIP/live" for your wyze cam
 # RTMP_URL = "rtmp://a.rtmp.youtube.com/live2/<your stream key here>"
-
+os.system('#!/bin/bash -l')
 RTSP_URL = os.environ['RTSP_URL']
 RTMP_URL = os.environ['RTMP_URL']
 
