@@ -5,7 +5,7 @@ import os
 import sys
 import requests
 import json
-from datetime import datetime, time, timedelta
+from datetime import datetime, time, timedelta, timezone
 
 # Get RTSP_URL and RTMP_URL from environment variables
 # These will be unique to your use cases but would look something like this
@@ -25,7 +25,7 @@ print(url)
 r = requests.get(url) # query data
 print(r)
 
-d = datetime.now()
+d = datetime.now(timezone.utc)
 today_date = d.date()
 time_now = d.time()
 data = json.loads(r.content)
@@ -40,12 +40,14 @@ os.system('killall ffmpeg')
 # Check if there is override argument to run specifically for day time or night time
 # example : override for day time : python3 autoStream.py true
 # example : override for night time : python3 autoStream.py false
-isDaytime = False
-if len(sys.argv) > 1 :
+isDaytime = 0
+if len(sys.argv) > 1:
 	isDaytime = sys.argv[1]
 	print(f'override daytime flag set as {isDaytime}')
 
-if isDaytime is True or time_now > sunrise_time and time_now < sunset_time:  # In between sunrise and sunse
+print(f'time_now {time_now}, sunrise_time {sunrise_time}, sunset_time {sunset_time} ')
+
+if (isDaytime == '1') or (time_now > sunrise_time and time_now < sunset_time):  # In between sunrise and sunse
 	print("Starting fast streaming as its day time")
 	os.system(f'ffmpeg -fflags +igndts -i {RTSP_URL} -c:v copy -c:a copy -f flv {RTMP_URL}')
 else:
